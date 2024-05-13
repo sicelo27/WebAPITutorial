@@ -23,7 +23,7 @@ namespace WebAPITutorial.Controllers
         [HttpPost]
         public string CreateShirt([FromBody] Shirt shirt)
         {
-            return "Creating a shirt";
+            return "Creating a shirt"; 
         }
 
         [HttpPut("{id}")]
