@@ -35,9 +35,22 @@ namespace WebAPITutorial.Controllers
         }
 
         [HttpPut("{id}")]
-        public string UpdateShirt(int id)
+        [Shirt_ValidateShirtIdFilter]
+        public IActionResult UpdateShirt(int id, Shirt shirt)
         {
-            return $"Updating shirt: {id}";
+            if (id != shirt.ShirtId) return BadRequest();
+
+           try
+            {
+                ShirtRepository.UpdateShirt(shirt);
+            }
+            catch
+            {
+                if (!ShirtRepository.ShirtExists(id)) return NotFound();
+                throw;
+            }
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
