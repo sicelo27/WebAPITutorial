@@ -11,9 +11,9 @@ namespace WebAPITutorial.Controllers
     public class ShirtsController : ControllerBase
     {
         [HttpGet]
-        public string GetShirts()
+        public IActionResult GetShirts()
         {
-            return "Reading all shirts";
+            return Ok(ShirtRepository.GetShirts());
         }
 
         [HttpGet("{id}")]

@@ -10,6 +10,11 @@
             new Shirt {ShirtId = 4, Brand = "Her Brand", Color = "Pink", Gender = "Women", Price = 10, Size = 10},
         };
 
+        public static List<Shirt> GetShirts()
+        {
+            return shirts;
+        }
+
         public static bool ShirtExists(int id)
         {
             return shirts.Any(x => x.ShirtId == id);
@@ -17,7 +22,7 @@
 
         public static Shirt? GetShirtById(int id)
         {
-            return shirts.FirstOrDefault(x => x.ShirtId == id)
+            return shirts.FirstOrDefault(x => x.ShirtId == id);
         }
     }
 }
