@@ -3,7 +3,7 @@ using WebAPITutorial.Models.Repositories;
 using WebAPITutorial.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPITutorial.Filters
+namespace WebAPITutorial.Filters.ActionFilters
 {
     public class Shirt_ValidateCreateShirtFilterAttribute : ActionFilterAttribute
     {
