@@ -24,9 +24,17 @@ namespace WebAPITutorial.Controllers
         }
 
         [HttpPost]
-        public string CreateShirt([FromBody] Shirt shirt)
+        public IActionResult CreateShirt([FromBody] Shirt shirt)
         {
-            return "Creating a shirt"; 
+           if (shirt == null) return BadRequest();
+            var existingShirt = ShirtRepository.GetShirtByProperties(shirt.Brand, shirt.Gender, shirt.Color, shirt.Size);
+            if (existingShirt != null) return BadRequest();
+
+            ShirtRepository.AddShirt(shirt);
+
+            return CreatedAtAction(nameof(GetShirtById),
+                new { id = shirt.ShirtId },
+                shirt);
         }
 
         [HttpPut("{id}")]
