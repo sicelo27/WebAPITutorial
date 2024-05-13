@@ -8,6 +8,16 @@ namespace WebAPITutorial.Controllers
     [Route("api/[controller]")]
     public class ShirtsController : ControllerBase
     {
+        private List<Shirt> shirts = new List<Shirt>()
+        {
+            new Shirt {ShirtId = 1, Brand = "My Brand", Color = "Blue", Gender = "Men", Price = 30, Size = 10},
+            new Shirt {ShirtId = 2, Brand = "My Brand", Color = "Black", Gender = "Men", Price = 24, Size = 8},
+            new Shirt {ShirtId = 3, Brand = "Your Brand", Color = "Green", Gender = "Women", Price = 32, Size = 6},
+            new Shirt {ShirtId = 4, Brand = "Her Brand", Color = "Pink", Gender = "Women", Price = 10, Size = 10},
+
+
+
+        };
         [HttpGet]
         public string GetShirts()
         {
@@ -15,9 +25,16 @@ namespace WebAPITutorial.Controllers
         }
 
         [HttpGet("{id}")]
-        public string GetShirtById(int id)
+        public IActionResult GetShirtById(int id)
         {
-            return $"Reading shirt: {id}";
+            if (id < 0)
+                return BadRequest();
+
+            var shirt = shirts.FirstOrDefault(x =>  x.ShirtId == id);
+            if (shirt == null)
+                return NotFound();
+
+            return Ok(shirt);
         }
 
         [HttpPost]
