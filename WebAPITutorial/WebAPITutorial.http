@@ -1,6 +1,6 @@
 @WebAPITutorial_HostAddress = http://localhost:5269
 
-GET {{WebAPITutorial_HostAddress}}/weatherforecast/
+GET {{WebAPITutorial_HostAddress}}/
 Accept: application/json
 
 ###
